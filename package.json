@@ -1,0 +1,49 @@
+{
+  "name": "avneditor",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Codex",
+  "description": "A simple installable four-photo collage app.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "serve": "node server.js",
+    "dist": "node build-portable.js",
+    "pack": "node build-portable.js",
+    "portable": "node build-portable.js"
+  },
+  "build": {
+    "appId": "com.avneditor.collage",
+    "productName": "AVNEditor",
+    "electronDist": "node_modules/electron/dist",
+    "npmRebuild": false,
+    "files": [
+      "index.html",
+      "styles.css",
+      "app.js",
+      "main.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "Nourish Week Planner-${version}-portable.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^32.3.3",
+    "electron-builder": "^24.13.3"
+  }
+}
