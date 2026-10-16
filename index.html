@@ -1,1 +1,96 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#171927"><meta name="description" content="Create a simple four-photo collage."><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" sizes="1024x1024" href="./icons/icon-1024.png"><link rel="stylesheet" href="./styles.css"><title>AVNEditor</title></head><body><main class="app-shell"><header class="topbar"><div class="brand-mark">AVN</div><div><h1>AVNEditor</h1><p>Four photos. One collage.</p></div><button id="install-button" class="icon-button hidden" type="button">Install</button></header><section class="intro"><span class="eyebrow">Simple photo collage</span><h2>Make a moment worth keeping.</h2><p>Choose up to four photos, arrange them your way, and save your collage.</p></section><section class="workspace"><div class="collage-card"><div id="collage" class="collage" aria-label="Your four photo collage"></div></div><div class="controls"><input id="photo-input" type="file" accept="image/*" multiple hidden><button id="add-button" class="primary-button" type="button">Add photos</button><button id="save-button" class="secondary-button" type="button" disabled>Save collage</button><p id="status" class="status" aria-live="polite">Add up to 4 photos to begin.</p></div></section><section class="how-it-works"><div><span>1</span><p>Add up to four photos</p></div><div><span>2</span><p>Tap a tile to replace it</p></div><div><span>3</span><p>Save your collage</p></div></section></main><script src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171927">
+  <meta name="description" content="Create a simple four-photo collage.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="1024x1024" href="./icons/icon-1024.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>AVNEditor</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">AVN</div>
+      <div><h1>AVNEditor</h1><p>Four photos. One collage.</p></div>
+      <button id="install-button" class="pill-button hidden" type="button">Install</button>
+    </header>
+
+    <section class="intro">
+      <span class="eyebrow">Simple photo collage</span>
+      <h2>Make a moment worth keeping.</h2>
+      <p>Pick up to four photos, give each one a little polish, and save the finished collage.</p>
+    </section>
+
+    <section class="editor" aria-label="Collage editor">
+      <div class="preview-column">
+        <div class="collage-card">
+          <div id="collage" class="collage" aria-label="Your four photo collage"></div>
+        </div>
+        <input id="photo-input" type="file" accept="image/*" multiple hidden>
+        <div class="action-row">
+          <button id="add-button" class="primary-button" type="button">Add photos</button>
+          <button id="save-button" class="secondary-button" type="button" disabled>Save collage</button>
+        </div>
+        <p id="status" class="status" aria-live="polite">Add up to 4 photos to begin.</p>
+      </div>
+
+      <aside class="toolbox" aria-label="Editing tools">
+        <div class="tool-group selected-tool">
+          <div class="tool-heading"><span>Photo</span><b id="selected-label">Select a photo</b></div>
+          <div class="tool-row">
+            <button id="rotate-button" class="tool-button" type="button" disabled>↻ Rotate</button>
+            <button id="replace-button" class="tool-button" type="button" disabled>Replace</button>
+          </div>
+          <label class="field-label">Filter
+            <select id="filter-select" disabled>
+              <option value="original">Original</option>
+              <option value="mono">Black &amp; white</option>
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+              <option value="vivid">Vivid</option>
+            </select>
+          </label>
+          <label class="range-label">Brightness <output id="brightness-value">100%</output>
+            <input id="brightness-input" type="range" min="60" max="140" value="100" disabled>
+          </label>
+          <label class="range-label">Contrast <output id="contrast-value">100%</output>
+            <input id="contrast-input" type="range" min="60" max="140" value="100" disabled>
+          </label>
+        </div>
+
+        <div class="tool-group">
+          <div class="tool-heading"><span>Collage style</span></div>
+          <div class="field-label">Background
+            <div id="background-options" class="swatches" role="group" aria-label="Collage background">
+              <button data-color="#ffffff" class="swatch active" style="--swatch:#ffffff" aria-label="White"></button>
+              <button data-color="#171927" class="swatch" style="--swatch:#171927" aria-label="Midnight"></button>
+              <button data-color="#f4d6dd" class="swatch" style="--swatch:#f4d6dd" aria-label="Blush"></button>
+              <button data-color="#d7ebea" class="swatch" style="--swatch:#d7ebea" aria-label="Mint"></button>
+              <button data-color="#f1e1bc" class="swatch" style="--swatch:#f1e1bc" aria-label="Sand"></button>
+            </div>
+          </div>
+          <label class="range-label">Photo spacing <output id="gap-value">5px</output>
+            <input id="gap-input" type="range" min="0" max="24" value="5">
+          </label>
+          <div class="field-label">Photo corners
+            <div class="segmented" role="group" aria-label="Photo corners">
+              <button data-radius="0" class="segment active" type="button">Square</button>
+              <button data-radius="18" class="segment" type="button">Rounded</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <label class="field-label" for="caption-input">Caption
+            <input id="caption-input" maxlength="60" placeholder="Add a short caption">
+          </label>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
